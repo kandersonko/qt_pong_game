@@ -4,7 +4,6 @@
 #include <QBrush>
 #include <QTimer>
 #include <QList>
-#include <QDebug>
 
 Ball::Ball()
 {
@@ -53,9 +52,16 @@ void Ball::move()
 {
     //ball collides with players
     if(collidesWithItem(m_computer) || collidesWithItem(m_player)){
-        qDebug() << "Collision detected";
+//        dx = -dx;
         dx = -dx;
         dy = -(rand() % 2) + 1; // random y
     }
+    else if(y()>BOARD_HEIGHT - PADDLE_HEIGHT) {
+        dy = -dy;
+    }
+    else {
+//        dy = -(rand() % 2) + 1; // random y
+    }
     setPos(x() + (m_speed * dx), y() + (m_speed * dy));
+    m_computer->randomMove(y());
 }

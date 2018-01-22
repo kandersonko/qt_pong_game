@@ -9,6 +9,10 @@ class GameController
 {
 public:
     GameController();
+    void move(Paddle *computer);
+
+protected:
+    qreal m_speed;
 };
 
 #endif // GAMECONTROLLER_H

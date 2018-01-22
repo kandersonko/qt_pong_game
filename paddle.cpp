@@ -1,6 +1,5 @@
 #include "paddle.h"
 #include <QBrush>
-#include <QDebug>
 
 Paddle::Paddle()
 {
@@ -14,6 +13,13 @@ void Paddle::move(Paddle::MoveType moveType)
         setPos(x(), y() - m_moveStep);
     else if(validMove(moveType) && moveType == DOWN)
         setPos(x(), y() + m_moveStep);
+}
+
+void Paddle::randomMove(qreal ballY)
+{
+    MoveType m = ((y() - ballY) > -10) ? UP : DOWN;
+//    MoveType moveType = static_cast<MoveType>(-(qrand() % 2) + 1);
+    move(m);
 }
 
 void Paddle::keyReleaseEvent(QKeyEvent *event)

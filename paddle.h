@@ -20,6 +20,7 @@ public:
     Q_ENUM(MoveType)
     bool validMove(MoveType moveType);
     void move(MoveType moveType);
+    void randomMove(qreal ballY);
     int height();
     int width();
 

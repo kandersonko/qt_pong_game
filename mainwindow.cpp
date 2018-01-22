@@ -5,7 +5,7 @@
 #include <QGraphicsRectItem>
 #include "paddle.h"
 #include "ball.h"
-#include <QDebug>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,4 +46,18 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::information(this, "About", "This is an alpha version of a simple pong game built with Qt.", "OK");
+}
+
+void MainWindow::on_actionHow_to_play_triggered()
+{
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setWindowTitle("How to play");
+    msgBox->setText("Use arrow keys UP and Down to move the paddle in order to hit the ball");
+    msgBox->setInformativeText("You win when the ball passes the computer paddle.\nHowever score in not implemented yet");
+    msgBox->exec();
 }
